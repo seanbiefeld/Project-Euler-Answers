@@ -6,27 +6,39 @@ namespace ProjectEuler
 	{
 		static void Main(string[] args)
 		{
-			int probNum = 0;
-
-			var isValid = false;
-
-			while (!isValid)
-			{ isValid = int.TryParse(Console.ReadLine(), out probNum); }
-
-			var type = Type.GetType("ProjectEuler.Problems.Problem" + probNum);
-
-			if (type != null)
+			while(true)
 			{
-				IProblem problem = (IProblem)Activator.CreateInstance(type);
+				Console.WriteLine("Please enter problem number to continue or exit to leave.");
+				var command = Console.ReadLine();
+				if(command != null)
+				{
+					if(command.ToUpper() == "EXIT")
+						break;
+				}
 
-				Console.WriteLine(problem.Solve());
-			}
-			else
-			{
-				Console.WriteLine("Unable to find specified problem");
-			}
+				int probNum;
+				if(!int.TryParse(command, out probNum))
+					continue;
 
-			Console.ReadLine();
+				var type = Type.GetType("ProjectEuler.Problems.Problem" + probNum);
+
+				if (type != null)
+				{
+					IProblem problem = (IProblem) Activator.CreateInstance(type);
+
+					var start = DateTime.Now;
+					var answer = problem.Solve();
+					var end = DateTime.Now;
+
+					Console.WriteLine(answer);
+					Console.WriteLine("Calculation took " + end.Subtract(start).TotalSeconds + " seconds");
+				}
+				else
+				{
+					Console.WriteLine("Unable to find specified problem");
+				}
+				Console.WriteLine();
+			}
 		}
 	}
 
