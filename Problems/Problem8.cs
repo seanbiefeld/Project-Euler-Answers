@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ProjectEuler.Problems
+﻿namespace ProjectEuler.Problems
 {
 	/// <summary>
 	/// Find the greatest product of five consecutive digits in the 1000-digit number.
