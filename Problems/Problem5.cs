@@ -19,6 +19,14 @@
 
 				for (int i = 1; i < 20; i++)
 				{
+					var mod = counter%i;
+
+					if(mod != 0)
+					{
+						divisibleByAll = false;
+						break;
+					}
+
 					divisibleByAll &= (counter%i == 0);
 				}
 
