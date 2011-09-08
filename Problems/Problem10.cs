@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 
 namespace ProjectEuler.Problems
 {
@@ -32,16 +33,16 @@ namespace ProjectEuler.Problems
 
 			//sieve of eratosthenes
 			//much faster
-			var max = 2000000;
-			BitArray primes = new BitArray(max+1,true);
+			var max = 2000001;
+			BitArray primes = new BitArray(max,true);
 			primes[0] = false;
 			primes[1] = false;
 
-			for (double i = 2; i < primes.Length; i++)
+			for (double i = 2; i < Math.Sqrt(max); i++)
 			{
 				if(primes.Get((int)i))
 				{
-					for (double j = i*i; j < max+1; j+=i)
+					for (double j = i*i; j < max; j+=i)
 					{
 						primes.Set((int)j, false);
 					}
