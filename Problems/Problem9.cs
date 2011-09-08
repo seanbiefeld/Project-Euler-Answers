@@ -18,16 +18,17 @@ namespace ProjectEuler.Problems
 
 			for (int a = 1; a <= perimeter; a++)
 			{
-				//brute force
-				//for (int b = 1; b <= perimeter; b++)
-				//{
-				//    var cSquared = Math.Pow(a, 2) + Math.Pow(b, 2);
-				//    var c = Math.Sqrt(cSquared);
-				//    if(a+b+c == perimeter)
-				//        return (a*b*c).ToString();
-				//}	
-
 				//using equation solving for b
+				//a^2+b^2=c^2
+				//a+b+c=perimeter
+				//c=p-a-b
+				//a^2+b^2=(p-a-b)^2
+				//		 =(p-a-b)(p-a-b)
+				//		 =p^2-pa-pb-pa+a^2+ab-pb+ab+b^2
+				//		 =p^2+a^2+b^2-2pa-2pb+2ab
+				//		0=p^2-2pa-2pb+2ab
+				//2pb-2ab=p^2-2pa
+				//		b=(p^2-2pa)/(2p-2a)
 				var denominator = (2*perimeter - 2*a);
 				var enumerator = (Math.Pow(perimeter, 2) - (2*perimeter*a));
 
