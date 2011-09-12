@@ -34,20 +34,7 @@ namespace ProjectEuler.Problems
 			//sieve of eratosthenes
 			//much faster
 			var max = 2000001;
-			BitArray primes = new BitArray(max,true);
-			primes[0] = false;
-			primes[1] = false;
-
-			for (double i = 2; i < Math.Sqrt(max); i++)
-			{
-				if(primes.Get((int)i))
-				{
-					for (double j = i*i; j < max; j+=i)
-					{
-						primes.Set((int)j, false);
-					}
-				}
-			}
+			BitArray primes = Calc.PrimesBySieveOfEratosthenes(max);
 
 			for (int i = 0; i < primes.Length; i++)
 			{

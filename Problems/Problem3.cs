@@ -7,22 +7,17 @@
 	{
 		public string Solve()
 		{
-			var k = 2;
-			var n = 46;
+			//assuming the largest prime is under 100000
+			var primes = Calc.GetAllPrimes(100000);
+			var largestPrime = 0;
 
-			while (k * k <= n)
+			foreach (var prime in primes)
 			{
-				if (n % k == 0)
-				{
-					n /= k;
-				}
-				else
-				{
-					++k;
-				}
+				if (largestPrime < prime && 600851475143 % prime == 0)
+					largestPrime = prime;
 			}
 
-			return n.ToString();
+			return largestPrime.ToString();
 		}
 	}
 }
